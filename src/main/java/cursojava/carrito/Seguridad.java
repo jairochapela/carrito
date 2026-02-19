@@ -33,6 +33,7 @@ public class Seguridad {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
             .requestMatchers("/", "/products", "/products/*").permitAll()
+            .requestMatchers("/cart").hasAuthority("USER")
         )
         .formLogin(form -> form
             .loginPage("/login")    // Página de login personalizada en ruta /login
@@ -57,7 +58,8 @@ public class Seguridad {
 
     /**
      * Define los detalles de usuarios que pueden acceder a la aplicación.
-     * En este caso, se crea un usuario en memoria con nombre "user" y contraseña "123456".
+     * Localiza un usuario en la base de datos por su email y devuelve un objeto
+     * de la clase org.springframework.security.core.userdetails.User con sus credenciales y roles.
      */
     @Bean
     public UserDetailsService userDetailsService() {

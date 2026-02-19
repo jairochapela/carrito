@@ -12,7 +12,7 @@
     <p th:text="'Unidades disponibles: ' + ${product.stock}">Product Stock</p>
     <p th:text="'Disponible desde: ' + ${#dates.format(product.createdAt, 'dd/MM/yyyy')}">Product Created At</p>
 
-    <form action="" method="post">
+    <form th:action="@{/products/{id}(id=${product.id})}" method="post">
         <label for="quantity">Cantidad:</label>
         <input type="number" id="quantity" name="quantity" min="1" th:max="${product.stock}" required>
         <button type="submit">Agregar al carrito</button>

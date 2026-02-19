@@ -1,5 +1,6 @@
 package cursojava.carrito.models;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import jakarta.annotation.Nullable;
@@ -21,7 +22,7 @@ public class Product {
     @Nullable
     private String description;
 
-    private Double price;
+    private BigDecimal price;
 
     private Integer stock;
 
@@ -54,11 +55,11 @@ public class Product {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

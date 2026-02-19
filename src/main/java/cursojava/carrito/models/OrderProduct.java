@@ -1,13 +1,18 @@
 package cursojava.carrito.models;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "order_product")
+@IdClass(OPKey.class)
 public class OrderProduct {
     
     @Id
@@ -16,13 +21,13 @@ public class OrderProduct {
     Order order;
 
     @Id
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
     Product product;
 
     Integer quantity;
 
-    Double unitPrice;
+    BigDecimal unitPrice;
 
     public OrderProduct() {
     }
@@ -51,11 +56,11 @@ public class OrderProduct {
         this.quantity = quantity;
     }
 
-    public Double getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(Double unitPrice) {
+    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
 

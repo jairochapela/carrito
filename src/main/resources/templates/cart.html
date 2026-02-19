@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+
+    <p>Pedido creado con fecha: <span th:text="${order.createdAt}"></span></p>
+
+
+    <table th:if="${not #lists.isEmpty(lines)}">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="line : ${lines}">
+                <td th:text="${line.product.name}"></td>
+                <td th:text="${line.quantity}"></td>
+                <td th:text="${line.product.price}"></td>
+                <td th:text="${line.quantity * line.product.price}"></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total</td>
+                <td th:text="${total}"></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <p th:if="${#lists.isEmpty(lines)}">
+        Todavía no has añadido productos al carrito.
+        Puedes añadir algunos desde la <a th:href="@{/products}">página de productos</a>.
+    </p>
+
+    <a th:href="@{/products}">Seguir comprando</a>
+    
+</body>
+</html>

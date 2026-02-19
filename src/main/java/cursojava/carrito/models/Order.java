@@ -5,9 +5,11 @@ import java.util.Date;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,11 +17,12 @@ import jakarta.persistence.Table;
 public class Order {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_id_seq")
+    @SequenceGenerator(name = "order_id_seq", sequenceName = "order_id_seq", allocationSize = 1)
     private Integer id;
 
     @Nullable
-    private char status;
+    private Character status;
 
     private Date createdAt;
 
@@ -38,11 +41,11 @@ public class Order {
         this.id = id;
     }
 
-    public char getStatus() {
+    public Character getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(Character status) {
         this.status = status;
     }
 
