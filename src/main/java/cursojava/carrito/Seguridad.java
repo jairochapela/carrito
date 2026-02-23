@@ -33,7 +33,7 @@ public class Seguridad {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
             .requestMatchers("/", "/products", "/products/*").permitAll()
-            .requestMatchers("/cart").hasAuthority("USER")
+            .requestMatchers("/cart", "/cart/**").hasAuthority("USER")
         )
         .formLogin(form -> form
             .loginPage("/login")    // Página de login personalizada en ruta /login

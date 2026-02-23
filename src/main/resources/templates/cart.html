@@ -42,6 +42,11 @@
     </p>
 
     <a th:href="@{/products}">Seguir comprando</a>
+
+    <form th:action="@{/cart/checkout}" method="post">
+        <button type="submit">Finalizar compra</button>
+    </form>
+    
     
 </body>
 </html>
