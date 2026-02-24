@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pago</title>
+<head th:replace="base :: head('Pago del pedido')">
 </head>
-<body>
-    <h1>Pago del pedido #<span th:text="${order.id}"></span></h1>
+<body th:replace="~{base :: body(~{::main})}">
+    <main>
+        <h1>Pago del pedido #<span th:text="${order.id}"></span></h1>
+        <p>Gracias por tu compra. Tu pedido ha sido registrado con fecha: <span th:text="${order.createdAt}"></span>.</p>
+        <p>El total de tu pedido es: <span th:text="${total}"></span> €.</p>
+        <h2>Método de pago</h2>
+        <form action="" method="post">
+            <input type="radio" name="metodo_pago" id="metodo_tarjeta" value="tarjeta" checked>
+            <label for="metodo_tarjeta">Tarjeta de crédito</label>
+            <br>
+            <input type="radio" name="metodo_pago" id="metodo_paypal" value="paypal">
+            <label for="metodo_paypal">PayPal</label>
+            <br>
+            <input type="radio" name="metodo_pago" id="metodo_transferencia" value="transferencia">
+            <label for="metodo_transferencia">Transferencia bancaria</label>
+            <br>
+            <button type="submit">Pagar</button>
+        </form>
+    </main>
 
-    <p>Gracias por tu compra. Tu pedido ha sido registrado con fecha: <span th:text="${order.createdAt}"></span>.</p>
 
-    <p>El total de tu pedido es: <span th:text="${total}"></span> €.</p>
-
-    <h2>Método de pago</h2>
-    <form action="" method="post">
-        <input type="radio" name="metodo_pago" id="metodo_tarjeta" value="tarjeta" checked>
-        <label for="metodo_tarjeta">Tarjeta de crédito</label>
-        <br>
-        <input type="radio" name="metodo_pago" id="metodo_paypal" value="paypal">
-        <label for="metodo_paypal">PayPal</label>
-        <br>
-        <input type="radio" name="metodo_pago" id="metodo_transferencia" value="transferencia">
-        <label for="metodo_transferencia">Transferencia bancaria</label>
-        <br>
-        <button type="submit">Pagar</button>
-    </form>
 </body>
 </html>

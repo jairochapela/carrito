@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Tienda Online</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body th:fragment="body(contenido)">
+    <nav th:fragment="nav">
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/products}">Productos</a>
+        <a th:href="@{/cart}">Carrito</a>
+        <a th:href="@{/login}">Iniciar sesión</a>
+    </nav>
+
+    <!-- Aquí va el contenido principal de cada página -->
+    <th:block th:replace="${contenido}" />
+
+    <footer th:fragment="footer">
+        <p>&copy; 2026 Tienda Online. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

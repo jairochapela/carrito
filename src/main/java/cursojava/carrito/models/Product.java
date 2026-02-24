@@ -28,6 +28,9 @@ public class Product {
 
     private Date createdAt;
 
+    private String foto;
+    
+
     public Product() {
     }
 
@@ -77,6 +80,14 @@ public class Product {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
 

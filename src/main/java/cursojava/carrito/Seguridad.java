@@ -32,7 +32,7 @@ public class Seguridad {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-            .requestMatchers("/", "/products", "/products/*").permitAll()
+            .requestMatchers("/", "/products", "/products/*", "/css/**", "/js/**", "/images/**", "/picture/**").permitAll()
             .requestMatchers("/cart", "/cart/**").hasAuthority("USER")
         )
         .formLogin(form -> form

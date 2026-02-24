@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
+<head th:replace="~{base :: head('Productos')}">
 </head>
-<body>
-    <h1>Productos</h1>
+<body th:replace="~{base :: body(~{::main})}"></body>
 
-    <div th:each="product : ${products}">
-        <h2 th:text="${product.name}">Nombre del producto</h2>
-        <p th:text="'Precio: $' + ${product.price}">Precio del producto</p>
-        <a th:href="@{'/products/' + ${product.id}}">Ver detalles</a>
-    </div>
+    <main>
+        <h1>Productos</h1>
+        <div th:each="product : ${products}">
+            <h2 th:text="${product.name}">Nombre del producto</h2>
+            <p th:text="'Precio: $' + ${product.price}">Precio del producto</p>
+            <a th:href="@{'/products/' + ${product.id}}">Ver detalles</a>
+        </div>
+    </main>
+
 </body>
 </html>
