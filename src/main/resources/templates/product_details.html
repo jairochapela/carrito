@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{base :: head(${product.name})}">
+<head th:replace="~{base :: head(~{::title})}">
+    <title th:text="${product.name}">Producto</title>
 </head>
 <body th:replace="~{base :: body(~{::main})}">
 
-    <main>
-        <h1 th:text="${product.name}">Product Name</h1>
+    <main class="container-fluid">
+        <h1 th:text="${product.name}">Producto</h1>
 
-        
-        <img th:if="${product.foto}" th:src="@{/picture/{filename}(filename=${product.foto})}" alt="${product.name}" style="width: 500px;">
-        <img th:unless="${product.foto}" th:src="@{/images/no-image.png}" alt="${product.name}" style="width: 500px;">
+        <div class="row">
+            
+            <div class="col-6">
+                <img th:if="${product.foto}" th:src="@{/picture/{filename}(filename=${product.foto})}" alt="${product.name}" style="width: 500px;">
+                <img th:unless="${product.foto}" th:src="@{/images/no-image.png}" alt="${product.name}" style="width: 500px;">
+            </div>
 
-        <p th:text="${product.description}">Product Description</p>
-        <p th:text="'Precio: $' + ${product.price}">Product Price</p>
-        <p th:text="'Unidades disponibles: ' + ${product.stock}">Product Stock</p>
-        <p th:text="'Disponible desde: ' + ${#dates.format(product.createdAt, 'dd/MM/yyyy')}">Product Created At</p>
-    
-        <form th:action="@{/products/{id}(id=${product.id})}" method="post">
-            <label for="quantity">Cantidad:</label>
-            <input type="number" id="quantity" name="quantity" min="1" th:max="${product.stock}" required>
-            <button type="submit">Agregar al carrito</button>
-        </form>
+            <div class="col-6">
+                <p th:text="${product.description}">Product Description</p>
+                <p th:text="'Precio: $' + ${product.price}">Product Price</p>
+
+                <p th:if="${product.stock > 3}" class="badge rounded-pill text-bg-success">En stock</p>
+                <p th:if="${product.stock > 0 && product.stock <= 3}" class="badge rounded-pill text-bg-warning">Últimas unidades</p>
+                <p th:if="${product.stock == 0}" class="badge rounded-pill text-bg-danger">Producto agotado</p>
+
+                <p th:text="'Disponible desde: ' + ${#dates.format(product.createdAt, 'dd/MM/yyyy')}">Product Created At</p>
+                <form th:if="${product.stock > 0}" th:action="@{/products/{id}(id=${product.id})}" method="post">
+                    <label for="quantity">Cantidad:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" th:max="${product.stock}" value="1"required>
+                    <button class="btn btn-primary" type="submit">Agregar al carrito</button>
+                </form>
+            </div>
+        </div>
     </main>
 
 

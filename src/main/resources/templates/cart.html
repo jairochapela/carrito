@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="base :: head('Carrito de Compras')">
+<head th:replace="base :: head(~{::title})">
+    <title>Carrito de Compras</title>
 </head>
 <body th:replace="~{base :: body(~{::main})}">
     <main>
         <h1>Carrito de Compras</h1>
         <p>Pedido creado con fecha: <span th:text="${order.createdAt}"></span></p>
-        <table th:if="${not #lists.isEmpty(lines)}">
+        <table class="table" th:if="${not #lists.isEmpty(lines)}">
             <thead>
                 <tr>
                     <th>Producto</th>
@@ -34,9 +35,9 @@
             Todavía no has añadido productos al carrito.
             Puedes añadir algunos desde la <a th:href="@{/products}">página de productos</a>.
         </p>
-        <a th:href="@{/products}">Seguir comprando</a>
+        <a th:href="@{/products}" class="btn btn-secondary">Seguir comprando</a>
         <form th:action="@{/cart/checkout}" method="post">
-            <button type="submit">Finalizar compra</button>
+            <button type="submit" class="btn btn-primary">Finalizar compra</button>
         </form>
         
     </main>

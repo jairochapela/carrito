@@ -34,3 +34,4 @@ build/
 pictures/
 
 .DS_Store
+sessions/SESSIONS.ser

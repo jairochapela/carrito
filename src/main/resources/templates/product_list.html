@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{base :: head('Productos')}">
+<head th:replace="~{base :: head(~{::title})}">
+    <title>Productos</title>
 </head>
-<body th:replace="~{base :: body(~{::main})}"></body>
+<body th:replace="~{base :: body(~{::main})}">
 
-    <main>
+    <main class="container-fluid">
         <h1>Productos</h1>
-        <div th:each="product : ${products}">
-            <h2 th:text="${product.name}">Nombre del producto</h2>
-            <p th:text="'Precio: $' + ${product.price}">Precio del producto</p>
-            <a th:href="@{'/products/' + ${product.id}}">Ver detalles</a>
+
+        <div class="row">
+            <div th:each="product : ${products}" class="card col-4">
+                <img th:if="${product.foto}" th:src="@{/picture/{filename}(filename=${product.foto})}" class="card-img-top" alt="${product.name}">
+                <img th:unless="${product.foto}" th:src="@{/images/no-image.png}" class="card-img-top" alt="${product.name}">
+            
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}">Producto</h5>
+                    <p class="card-text" th:text="'Precio: $' + ${product.price}">Precio: $xxx</p>
+                    <a th:href="@{'/products/' + ${product.id}}" class="btn btn-primary">Ver detalles</a>
+                </div>
+            </div>
         </div>
     </main>
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="base :: head('Pago del pedido')">
+<head th:replace="base :: head(~{::title})">
+    <title>Pago del pedido</title>
 </head>
 <body th:replace="~{base :: body(~{::main})}">
     <main>
